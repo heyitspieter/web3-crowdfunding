@@ -6,6 +6,7 @@ import {
   useContractWrite,
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
+import { data as defaultData } from "data";
 
 const Web3Context = createContext({
   address: "",
@@ -21,9 +22,7 @@ const Web3Context = createContext({
 export const useWeb3Context = () => useContext(Web3Context);
 
 const Web3Provider = ({ children }) => {
-  const { contract } = useContract(
-    "0xe91Da63EEc8B9591afc2520a2cd4974Ea8577f3E"
-  );
+  const { contract } = useContract(process.env.REACT_APP_CONTRACT_ADDRESS);
 
   const { mutateAsync: createCampaign } = useContractWrite(
     contract,
@@ -54,26 +53,22 @@ const Web3Provider = ({ children }) => {
     try {
       const data = await contract.call("getCampaigns");
 
-      if (data.length && typeof data === "object") {
-        const parsedData = data.map((campaign, index) => {
-          return {
-            owner: campaign.owner,
-            title: campaign.title,
-            description: campaign.description,
-            target: ethers.utils.formatEther(campaign.target.toString()),
-            deadline: campaign.deadline.toNumber(),
-            amountReceived: ethers.utils.formatEther(
-              campaign.amountReceived.toString()
-            ),
-            imageUrl: campaign.imageUrl,
-            pId: index,
-          };
-        });
+      const parsedData = data.map((campaign, index) => {
+        return {
+          owner: campaign.owner,
+          title: campaign.title,
+          description: campaign.description,
+          target: ethers.utils.formatEther(campaign.target.toString()),
+          deadline: campaign.deadline.toNumber(),
+          amountReceived: ethers.utils.formatEther(
+            campaign.amountReceived.toString()
+          ),
+          imageUrl: campaign.imageUrl,
+          pId: index,
+        };
+      });
 
-        return parsedData;
-      }
-
-      return [];
+      return parsedData.length ? parsedData : defaultData;
     } catch (error) {
       return error;
     }

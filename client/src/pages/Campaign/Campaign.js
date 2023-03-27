@@ -46,7 +46,7 @@ const Campaign = () => {
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
           <img
-            src={state.image}
+            src={state.imageUrl}
             alt="campaign"
             className="w-full h-[410px] object-cover rounded-xl"
           />
@@ -94,7 +94,7 @@ const Campaign = () => {
                   {state.owner}
                 </h4>
                 <p className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]">
-                  10 Campaigns
+                  1 Campaign(s)
                 </p>
               </div>
             </div>
@@ -134,7 +134,7 @@ const Campaign = () => {
                 ))
               ) : (
                 <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
-                  No donators yet. Be the first one!
+                  Donations are private for this campaign
                 </p>
               )}
             </div>

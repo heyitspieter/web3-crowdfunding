@@ -11,7 +11,7 @@ import FormBanner from "components/FormBanner/FormBanner";
 const NewCampaign = () => {
   const navigate = useNavigate();
 
-  const web3 = useWeb3Context;
+  const { createCampaign } = useWeb3Context();
 
   const [form, setForm] = useState({
     name: "",
@@ -38,7 +38,7 @@ const NewCampaign = () => {
       if (isUrl) {
         setIsLoading(true);
 
-        await web3.createCampaign({
+        await createCampaign({
           ...form,
           target: ethers.utils.parseUnits(form.target, 18),
         });

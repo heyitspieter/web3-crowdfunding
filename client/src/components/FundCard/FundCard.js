@@ -2,6 +2,7 @@ import { calcDaysLeft } from "utils";
 import { tagType, thirdweb } from "assets";
 
 const FundCard = ({
+  tag,
   owner,
   title,
   target,
@@ -19,8 +20,8 @@ const FundCard = ({
       onClick={clickHandler}
     >
       <img
-        src={imageUrl}
         alt="fund"
+        src={imageUrl}
         className="w-full h-[158px] object-cover rounded-[15px]"
       />
 
@@ -32,7 +33,7 @@ const FundCard = ({
             className="w-[17px] h-[17px] object-contain"
           />
           <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191]">
-            Education
+            {tag || "General"}
           </p>
         </div>
 

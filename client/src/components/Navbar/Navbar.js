@@ -10,18 +10,12 @@ import { menu, search, thirdweb, logo } from "assets";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const web3 = useWeb3Context();
+  const { address, connectWallet } = useWeb3Context();
 
   const sidebar = useContext(SidebarContext);
 
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-
-  const address = web3.address;
-
-  const connectWallet = () => {
-    web3.connectWallet();
-  };
 
   const btnClickHandler = () => {
     if (address) {
