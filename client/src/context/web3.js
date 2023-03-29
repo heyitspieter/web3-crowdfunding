@@ -68,7 +68,7 @@ const Web3Provider = ({ children }) => {
         };
       });
 
-      return parsedData.length ? parsedData : defaultData;
+      return [...parsedData, ...defaultData];
     } catch (error) {
       return error;
     }

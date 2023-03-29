@@ -56,7 +56,7 @@ const Campaign = () => {
               style={{
                 width: `${calculateBarPercentage(
                   state.target,
-                  state.amountCollected
+                  state.amountReceived
                 )}%`,
                 maxWidth: "100%",
               }}
@@ -68,7 +68,7 @@ const Campaign = () => {
           <CountBox title="Days Left" value={numDaysLeft} />
           <CountBox
             title={`Raised of ${state.target}`}
-            value={state.amountCollected}
+            value={state.amountReceived || 0}
           />
           <CountBox title="Total Backers" value={donators.length} />
         </div>

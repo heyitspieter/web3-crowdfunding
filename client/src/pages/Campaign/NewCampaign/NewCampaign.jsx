@@ -11,7 +11,7 @@ import FormBanner from "components/FormBanner/FormBanner";
 const NewCampaign = () => {
   const navigate = useNavigate();
 
-  const { createCampaign } = useWeb3Context();
+  const { address, createCampaign } = useWeb3Context();
 
   const [form, setForm] = useState({
     name: "",
@@ -33,6 +33,10 @@ const NewCampaign = () => {
 
   const submitFormHandler = (e) => {
     e.preventDefault();
+
+    if (!address) {
+      return alert("Connect a wallet to start your campaign");
+    }
 
     checkImageUrl(form.imageUrl, async (isUrl) => {
       if (isUrl) {

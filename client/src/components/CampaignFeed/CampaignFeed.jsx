@@ -34,7 +34,7 @@ const CampaignFeed = ({ isLoading, title, data }) => {
           data.length > 0 &&
           data.map((campaign) => (
             <FundCard
-              key={campaign.id}
+              key={campaign.pId}
               {...campaign}
               clickHandler={() => handleNavigate(campaign)}
             />
